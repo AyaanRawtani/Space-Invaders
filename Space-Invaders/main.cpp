@@ -2,10 +2,10 @@
 #include <SFML/System.hpp>
 #include <stdio.h>
 #include<iostream>
-
-
+#include "GameService.h"
 using namespace std;
 
+/*
 class Player {
 private:
 
@@ -51,9 +51,10 @@ public:
 
    
 };
-
+*/
 int main()
 {
+    /*
     //window
     sf::VideoMode videoMode = sf::VideoMode(800,600);
     sf::RenderWindow window(videoMode, "SFML Window");
@@ -63,6 +64,7 @@ int main()
     player.player_texture.loadFromFile("assets/textures/player_ship.png");
     player.player_sprite.setTexture(player.player_texture);
 
+    
     // loop
     while (window.isOpen())
     {
@@ -89,6 +91,14 @@ int main()
 
         window.display();
     }
+    */
 
+    GameService gameService;
+    gameService.Ignite();
+    while (gameService.isRunning())
+    {
+        gameService.update();
+        gameService.render();
+    }
     return 0;
 }
