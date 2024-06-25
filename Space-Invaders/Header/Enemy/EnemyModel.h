@@ -1,21 +1,22 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+
 namespace Enemy
 {
-	enum class MovementDirection
-	{
-		LEFT,
-		RIGHT,
-		DOWN,
-	};
+	enum class EnemyType;
+	enum class MovementDirection;
+	enum class EnemyState;
+	
 
 	class EnemyModel
 	{
 	private:
 		sf::Vector2f reference_position = sf::Vector2f(50.0f, 50.0f);
 		sf::Vector2f enemy_position;
-		bool enemy_alive;
+		//bool enemy_alive;
 		MovementDirection movement_direction;
+		EnemyType enemy_type;
+		EnemyState enemy_state;
 
 	public:
 		const sf::Vector2f left_most_position = sf::Vector2f(50.0f, 950.0f);
@@ -25,7 +26,7 @@ namespace Enemy
 		const float enemy_movement_speed = 250.0f;
 
 
-		EnemyModel();
+		EnemyModel(EnemyType type);
 		~EnemyModel();
 
 		void initialize();
@@ -38,8 +39,14 @@ namespace Enemy
 		sf::Vector2f getReferencePosition();
 		void setReferencePosition(sf::Vector2f position);
 
-		bool getEnemyAlive();
-		void setEnemyAlive(bool alive);
+		//bool getEnemyAlive();
+		//void setEnemyAlive(bool alive);
+
+		EnemyState getEnemyState();
+		void setEnemyState(EnemyState state);
+
+		EnemyType getEnemyType();
+		void setEnemyType(EnemyType type);
 
 		MovementDirection getMovementDirection();
 		void setMovementDirection(MovementDirection direction);

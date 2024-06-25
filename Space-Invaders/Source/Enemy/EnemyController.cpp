@@ -2,6 +2,7 @@
 #include "Enemy/EnemyModel.h"
 #include "Enemy/EnemyView.h"
 #include "Global/ServiceLocator.h"
+#include "Enemy/EnemyConfig.h"
 
 namespace Enemy
 {
@@ -10,7 +11,7 @@ namespace Enemy
 	EnemyController::EnemyController()
 	{
 		enemy_view = new EnemyView();
-		enemy_model = new EnemyModel();
+		enemy_model = new EnemyModel(EnemyType());
 	}
 
 	EnemyController::~EnemyController()
