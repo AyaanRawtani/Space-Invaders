@@ -11,8 +11,7 @@ namespace Enemy
 	EnemyController::EnemyController(EnemyType type)
 	{
 		enemy_view = new EnemyView();
-		enemy_model = new EnemyModel(EnemyType());		
-		enemy_type = new EnemyType();
+		enemy_model = new EnemyModel(type);		
 	}
 
 	EnemyController::~EnemyController()
@@ -24,6 +23,7 @@ namespace Enemy
 	void EnemyController::initialize()
 	{
 		enemy_model->initialize();
+		enemy_model->setEnemyPosition(getRandomInitialPosition());
 		enemy_view->initialize(this);
 	}
 
@@ -31,11 +31,25 @@ namespace Enemy
 	{
 		move();
 		enemy_view->update();
+		handleOutOfBounds();
 	}
+
 
 	void EnemyController::render()
 	{
 		enemy_view->render();
+	}
+
+	void EnemyController::handleOutOfBounds()
+	{
+		sf::Vector2f enemyPosition = getEnemyPosition();
+		sf::Vector2u windowSize = ServiceLocator::getInstance()->getGraphicService()->getGameWindow()->getSize();
+
+		if (enemyPosition.x < 0 || enemyPosition.x > windowSize.x ||
+			enemyPosition.y < 0 || enemyPosition.y > windowSize.y)
+		{
+			ServiceLocator::getInstance()->getEnemyService()->destroyEnemy(this);
+		}
 	}
 
 	sf::Vector2f EnemyController::getEnemyPosition()
@@ -43,14 +57,25 @@ namespace Enemy
 		return enemy_model->getEnemyPosition();
 	}
 
-	EnemyType EnemyModel::getEnemyType()
+	EnemyType EnemyController::getEnemyType()
 	{
-		return enemy_type;
+		return enemy_model->getEnemyType();
 	}
 
-	void EnemyModel::setEnemyType(EnemyType type)
+	EnemyState EnemyController::getEnemyState()
 	{
-		enemy_type = type;
+		return enemy_model->getEnemyState();
+
+	}
+	
+
+	sf::Vector2f EnemyController::getRandomInitialPosition()
+	{
+		float x_offset_distance = (std::rand() % static_cast<int>(enemy_model->right_most_position.x - enemy_model->left_most_position.x));
+		float x_position = enemy_model->left_most_position.x + x_offset_distance;
+		float y_position = enemy_model->left_most_position.y;
+
+		return sf::Vector2f(x_position, y_position);
 	}
 
 	/*void EnemyController::getEnemyType()

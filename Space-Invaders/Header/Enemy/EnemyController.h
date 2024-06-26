@@ -5,7 +5,9 @@ namespace Enemy
 {
     class EnemyView;
     class EnemyModel;
+
     enum class EnemyType;
+    enum class EnemyState;
 
     class EnemyController
     {
@@ -16,9 +18,12 @@ namespace Enemy
         EnemyType* enemy_type;
 
         virtual void move() = 0;
-        void moveLeft();
-        void moveRight();
-        void moveDown();
+        //void moveLeft();
+        //void moveRight();
+        //void moveDown();
+
+        sf::Vector2f getRandomInitialPosition();
+        void handleOutOfBounds();
 
     public:
         EnemyController(EnemyType type);
@@ -29,7 +34,8 @@ namespace Enemy
         void render();
 
         EnemyType getEnemyType();
-        void setEnemyType(EnemyType type);
+        EnemyState getEnemyState();
+        //void setEnemyType(EnemyType type);
         //void getEnemyType();
         sf::Vector2f getEnemyPosition();
     };
