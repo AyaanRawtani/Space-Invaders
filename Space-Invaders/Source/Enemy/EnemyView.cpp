@@ -2,6 +2,8 @@
 #include "Global/ServiceLocator.h"
 #include "Enemy/EnemyController.h"
 #include "Graphic/GraphicService.h"
+#include "Enemy/EnemyConfig.h"
+#include "Enemy/EnemyModel.h"
 
 namespace Enemy 
 {
@@ -15,18 +17,31 @@ namespace Enemy
 	{
 		enemy_controller = controller;
 		game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
-		initializeEnemySprite();
+		initializeEnemySprite(enemy_controller->getEnemyType());
 	}
 
-	void EnemyView::initializeEnemySprite()
+	void EnemyView::initializeEnemySprite(EnemyType type)
 	{
-		if (enemy_texture.loadFromFile(enemy_texture_path))
+		switch (type)
 		{
-			//printf("initializing enemy sprite \n");
-			enemy_sprite.setTexture(enemy_texture);
-			scaleEnemySprite();
+
+		case::Enemy::EnemyType::SUBZERO:
+			if (enemy_texture.loadFromFile(subzero_texture_path))
+			{
+					//printf("initializing enemy sprite \n");
+					enemy_sprite.setTexture(enemy_texture);
+					scaleEnemySprite();
+			}
+			break;
+
+		case::Enemy::EnemyType::ZAPPER:
+			if (enemy_texture.loadFromFile(zapper_texture_path))
+			{
+				enemy_sprite.setTexture(enemy_texture);
+				scaleEnemySprite();
+			}
+				//printf("failed to initialize enemy sprite \n");
 		}
-		//printf("failed to initialize enemy sprite \n");
 		
 	}
 

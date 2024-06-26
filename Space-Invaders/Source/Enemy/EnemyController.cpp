@@ -8,10 +8,11 @@ namespace Enemy
 {
 	using namespace Global;
 
-	EnemyController::EnemyController()
+	EnemyController::EnemyController(EnemyType type)
 	{
 		enemy_view = new EnemyView();
-		enemy_model = new EnemyModel(EnemyType());
+		enemy_model = new EnemyModel(EnemyType());		
+		enemy_type = new EnemyType();
 	}
 
 	EnemyController::~EnemyController()
@@ -42,7 +43,22 @@ namespace Enemy
 		return enemy_model->getEnemyPosition();
 	}
 
-	/*void EnemyController::move()
+	EnemyType EnemyModel::getEnemyType()
+	{
+		return enemy_type;
+	}
+
+	void EnemyModel::setEnemyType(EnemyType type)
+	{
+		enemy_type = type;
+	}
+
+	/*void EnemyController::getEnemyType()
+	{
+		
+	}
+
+	void EnemyController::move()
 	{
 		switch (enemy_model->getMovementDirection())
 		{
@@ -58,7 +74,7 @@ namespace Enemy
 			moveDown();
 			break;
 		}
-	}*/
+	}
 
 	void EnemyController::moveRight()
 	{
@@ -101,6 +117,7 @@ namespace Enemy
 		}
 		else enemy_model->setEnemyPosition(currentPosition);
 	}
+	*/
 
 }
 

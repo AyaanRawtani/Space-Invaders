@@ -72,10 +72,10 @@
     <ClCompile Include="Source\Gameplay\GameplayView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Enemy\Controllers\ZapperController.cpp">
+    <ClCompile Include="Source\Enemy\Controller\ZapperController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Enemy\Controllers\SubzeroController.cpp">
+    <ClCompile Include="Source\Enemy\Controller\SubzeroController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Enemy\EnemyConfig.cpp">
@@ -140,10 +140,10 @@
     <ClInclude Include="Header\Gameplay\GameplayView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Header\Enemy\Controllers\ZapperController.h">
+    <ClInclude Include="Header\Enemy\Controller\ZapperController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Header\Enemy\Controllers\SubzeroController.h">
+    <ClInclude Include="Header\Enemy\Controller\SubzeroController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Header\Enemy\EnemyConfig.h">
