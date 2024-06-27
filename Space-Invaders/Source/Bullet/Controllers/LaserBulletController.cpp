@@ -1,4 +1,5 @@
 #include "Bullet/Controllers/LaserBulletController.h"
+#include "Bullet/BulletModel.h"
 
 namespace Bullet
 {
