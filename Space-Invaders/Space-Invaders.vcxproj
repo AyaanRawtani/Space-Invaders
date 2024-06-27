@@ -152,7 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Source\Bullet\BulletConfig.cpp" />
+    <ClCompile Include="Source\Bullet\BulletController.cpp" />
     <ClCompile Include="Source\Bullet\BulletService.cpp" />
     <ClCompile Include="Source\Bullet\BulletView.cpp" />
     <ClCompile Include="Source\Element\Bunker\BunkerController.cpp" />
@@ -185,6 +185,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Bullet\BulletConfig.h" />
+    <ClInclude Include="Header\Bullet\BulletController.h" />
     <ClInclude Include="Header\Bullet\BulletService.h" />
     <ClInclude Include="Header\Bullet\BulletView.h" />
     <ClInclude Include="Header\Element\Bunker\BunkerController.h" />

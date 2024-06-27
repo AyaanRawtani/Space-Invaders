@@ -102,10 +102,10 @@
     <ClCompile Include="Source\Bullet\BulletView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Bullet\BulletConfig.cpp">
+    <ClCompile Include="Source\Bullet\BulletService.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Bullet\BulletService.cpp">
+    <ClCompile Include="Source\Bullet\BulletController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -204,6 +204,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Header\Bullet\BulletView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Bullet\BulletController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
