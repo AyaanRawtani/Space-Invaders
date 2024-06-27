@@ -1,4 +1,5 @@
 #include "Bullet/BulletController.h"
+#include "Bullet/BulletModel.h"
 
 namespace Bullet
 {
@@ -45,6 +46,6 @@ namespace Bullet
 	}
 	BulletType BulletController::getBulletType()
 	{
-
+		
 	}
 }
