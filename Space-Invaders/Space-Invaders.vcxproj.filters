@@ -111,6 +111,15 @@
     <ClCompile Include="Source\Bullet\BulletModel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Bullet\Controllers\LaserBulletController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Bullet\Controllers\TorpedoController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Bullet\Controllers\FrostBulletController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Header.h">
@@ -213,6 +222,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Header\Bullet\BulletModel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Bullet\Controllers\LaserBulletController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Bullet\Controllers\TorpedoController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Bullet\Controllers\FrostBulletController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
