@@ -1,12 +1,5 @@
 #include "Global/ServiceLocator.h"
-#include "Event/EventService.h"
-#include "Graphic/GraphicService.h"
-#include "Time/TimeService.h"
-#include "Player/PlayerService.h"
-#include "UIService/UIService.h"
-#include "Enemy/EnemyService.h"
 #include "Main/GameService.h"
-#include "Gameplay/GameplayService.h"
 
 namespace Global
 {
@@ -18,6 +11,9 @@ namespace Global
 	using namespace Enemy;
 	using namespace Main;
 	using namespace Gameplay;
+	using namespace Element;
+	using namespace Sound;
+	using namespace Bullet;
 
 	ServiceLocator::ServiceLocator()
 	{
@@ -28,6 +24,9 @@ namespace Global
 		ui_service = nullptr;
 		enemy_service = nullptr;
 		gameplay_service = nullptr;
+		element_service = nullptr;
+		sound_service = nullptr;
+		bullet_service = nullptr;
 
 		createServices();
 	}
@@ -45,6 +44,9 @@ namespace Global
 		ui_service = new UIService();
 		enemy_service = new EnemyService();
 		gameplay_service = new GameplayService();
+		element_service = new ElementService();
+		sound_service = new SoundService();
+		bullet_service = new BulletService();
 	}
 	void ServiceLocator::clearAllServices()
 	{
@@ -55,6 +57,9 @@ namespace Global
 		delete (ui_service);
 		delete (enemy_service);
 		delete(gameplay_service);
+		delete (element_service);
+		delete(sound_service);
+		delete(bullet_service);
 
 	}
 
@@ -72,6 +77,9 @@ namespace Global
 		ui_service->initialize();
 		enemy_service->initialize();
 		gameplay_service->initialize();
+		element_service->initialize();
+		sound_service->initialize();
+		bullet_service->initialize();
 	}
 	void ServiceLocator::update()
 	{
@@ -84,6 +92,8 @@ namespace Global
 			player_service->update();
 			enemy_service->update();
 			gameplay_service->update();
+			element_service->update();
+			bullet_service->update();
 		}
 
 		ui_service->update();
@@ -97,6 +107,8 @@ namespace Global
 			gameplay_service->render();
 			player_service->render();
 			enemy_service->render();
+			element_service->render();
+			bullet_service->render();
 			
 		}
 
@@ -137,6 +149,26 @@ namespace Global
 	GameplayService* ServiceLocator::getGameplayService()
 	{
 		return gameplay_service;
+	}
+
+	ElementService* ServiceLocator::getElementService()
+	{
+		return element_service;
+	}
+
+	SoundService* ServiceLocator::getSoundService()
+	{
+		return sound_service;
+	}
+
+	BulletService* ServiceLocator::getBulletService()
+	{
+		return bullet_service;
+	}
+
+	void ServiceLocator::deleteServiceLocator()
+	{
+		delete(this);
 	}
 
 }
