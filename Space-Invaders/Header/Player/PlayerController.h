@@ -16,13 +16,13 @@ namespace Player
 		PlayerModel* player_model;
 
 		//float rate_of_fire = 10.f;
-		float elapsed_fire_duration;
+		//float elapsed_fire_duration;
 		
 		void processPlayerInput();
 		void moveLeft();
 		void moveRight();
-		void updateFireTimer();
-		void processBulletFire();
+		//void updateFireTimer();
+		//void processBulletFire();
 		void fireBullet();
 
 	public:
