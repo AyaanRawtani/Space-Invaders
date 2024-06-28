@@ -147,6 +147,9 @@
     <ClCompile Include="Source\Powerups\Controllers\RapidFireController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Enemy\Controller\UFOController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header\Header.h">
@@ -288,6 +291,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Header\Powerups\Controllers\TripleLaserController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\Enemy\Controller\UFOController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

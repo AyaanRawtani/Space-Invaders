@@ -10,7 +10,7 @@ namespace Powerup
 	PowerupController::PowerupController(PowerupType type)
 	{
 		powerup_view = new PowerupView();
-		powerup_model = new PowerupModel();
+		powerup_model = new PowerupModel(type);
 	}
 
 	PowerupController::~PowerupController()
