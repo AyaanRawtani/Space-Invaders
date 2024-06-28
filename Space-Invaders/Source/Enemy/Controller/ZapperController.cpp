@@ -19,6 +19,7 @@ namespace Enemy
         void ZapperController::initialize()
         {
             EnemyController::initialize(); 
+            rate_of_fire = zapper_rate_of_fire;
         }
 
        
@@ -111,6 +112,12 @@ namespace Enemy
                
                 enemy_model->setEnemyPosition(currentPosition);
             }
+        }
+
+        void ZapperController::fireBullet()
+        {
+            ServiceLocator::getInstance()->getBulletService()->spawnBullet(Bullet::BulletType::LASER_BULLET, enemy_model->getEnemyPosition() + enemy_model->barrel_position_offset,
+                Bullet::MovementDirection::DOWN);
         }
 
 	}
