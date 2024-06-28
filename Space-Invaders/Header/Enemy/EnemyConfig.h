@@ -6,7 +6,7 @@ namespace Enemy
 	{
 		ZAPPER,
 		SUBZERO,
-		//UFO,
+		UFO,
 		//THUNDER_SNAKE,
 	};
 

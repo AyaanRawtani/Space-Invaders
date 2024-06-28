@@ -5,6 +5,7 @@
 #include "Enemy/EnemyConfig.h"
 #include "Enemy/EnemyModel.h"
 
+
 namespace Enemy 
 {
 	using namespace Global;
@@ -36,6 +37,14 @@ namespace Enemy
 
 		case::Enemy::EnemyType::ZAPPER:
 			if (enemy_texture.loadFromFile(zapper_texture_path))
+			{
+				enemy_sprite.setTexture(enemy_texture);
+				scaleEnemySprite();
+			}
+			break;
+
+		case::Enemy::EnemyType::UFO:
+			if (enemy_texture.loadFromFile(ufo_texture_path))
 			{
 				enemy_sprite.setTexture(enemy_texture);
 				scaleEnemySprite();
