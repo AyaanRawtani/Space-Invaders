@@ -2,7 +2,7 @@
 
 namespace UI
 {
-	namespace Interface
+	namespace UIController
 	{
 		class IUIController
 		{
@@ -12,10 +12,8 @@ namespace UI
 			virtual void render() = 0;
 			virtual void show() = 0;
 
-			virtual ~IUIController()
-			{
-
-			}
+			virtual ~IUIController() {};
+			
 		};
 	}
 }

@@ -1,11 +1,11 @@
-#include "UIService/UIService.h"
-#include "Main/GameService.h"
-#include "UIService/MainMenuUIController/MainMenuUIController.h"
+#include "../../Header/UIService/UIService.h"
+#include "../../Header/Main/GameService.h"
 
 namespace UI
 {
 	using namespace Main;
 	using namespace MainMenu;
+	using namespace UIController;
 
 	UIService::UIService()
 	{
@@ -15,7 +15,7 @@ namespace UI
 
 	void UIService::createControllers()
 	{
-		main_menu_controller = new MainMenuUIController();
+		main_menu_controller = new MainMenu::MainMenuUIController();
 	}
 
 	UIService::~UIService()
@@ -30,29 +30,39 @@ namespace UI
 
 	void UIService::update()
 	{
-		switch (GameService::getGameState())
-		{
-		case GameState::MAIN_MENU:
-			return main_menu_controller->update();
-			break;
-		}
+		IUIController* ui_controller = getCurrentUIController();
+		if (ui_controller) ui_controller->update();
 	}
 
 	void UIService::render()
 	{
-		switch (GameService::getGameState())
-		{
-		case GameState::MAIN_MENU:
+		IUIController* ui_controller = getCurrentUIController();
+		if (ui_controller) ui_controller->render();
+	}
 
-			return main_menu_controller->render();
-			break;
-		}
+	void UIService::showScreen()
+	{
+		IUIController* ui_controller = getCurrentUIController();
+		if (ui_controller) ui_controller->show();
 	}
 
 	void UIService::initializeControllers()
 	{
 		main_menu_controller->initialize();
 				
+	}
+
+	IUIController* UIService::getCurrentUIController()
+	{
+		switch (GameService::getGameState())
+		{
+		case GameState::MAIN_MENU:
+
+			return main_menu_controller;
+
+			default:
+				return nullptr;
+		}
 	}
 
 	void UIService::destroy()
