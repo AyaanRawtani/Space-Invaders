@@ -64,6 +64,11 @@ namespace Powerup
 		);
 	}
 
+	void PowerupView::destroy()
+	{
+
+	}
+
 	void PowerupView::update()
 	{
 		powerup_sprite.setPosition(powerup_controller->getCollectiblePosition());

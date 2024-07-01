@@ -244,6 +244,7 @@
     <ClInclude Include="Header\Projectile\IProjectile.h" />
     <ClInclude Include="Header\Sound\SoundService.h" />
     <ClInclude Include="Header\Time\TimeService.h" />
+    <ClInclude Include="Header\UIService\Interface\UIController.h" />
     <ClInclude Include="Header\UIService\MainMenuUIController\MainMenuUIController.h" />
     <ClInclude Include="Header\UIService\UIService.h" />
   </ItemGroup>
