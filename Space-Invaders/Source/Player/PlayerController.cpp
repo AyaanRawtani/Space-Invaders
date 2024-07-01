@@ -27,8 +27,8 @@ namespace Player
 	{
 		player_model->initialize();
 		player_view->initialize(this);
-
 		
+	
 	}
 
 	void PlayerController::update()
@@ -59,6 +59,8 @@ namespace Player
 		{
 			moveRight();
 		}
+
+		if(event_service->pressedLeftMouseButton()) fireBullet();
 	}
 
 	void PlayerController::moveLeft()
@@ -78,4 +80,24 @@ namespace Player
 		currentPosition.x = std::min(currentPosition.x, player_model->right_most_position.x);
 		player_model->setPlayerPosition(currentPosition);
 	}
+
+	void PlayerController::fireBullet()
+	{
+		ServiceLocator::getInstance()->getBulletService()->spawnBullet(Bullet::BulletType::LASER_BULLET, player_model->getPlayerPosition() + player_model->barrel_position_offset,
+			Bullet::MovementDirection::UP);
+	}
+
+	/*void PlayerController::updateFireTimer()
+	{
+		elapsed_fire_duration += ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+	}
+
+	void PlayerController::processBulletFire()
+	{
+		if (elapsed_fire_duration >= rate_of_fire)
+		{
+			fireBullet();
+			elapsed_fire_duration = 0.f; 
+		}
+	}*/
 }

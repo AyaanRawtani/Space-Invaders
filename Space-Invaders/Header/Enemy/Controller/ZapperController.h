@@ -12,6 +12,8 @@ namespace Enemy
 			float vertical_movement_speed = 100.f;
 			float hortizontal_movement_speed = 250.f;
 
+			const float zapper_rate_of_fire = 2.f;
+
 			void move() override;
 			void moveDown();
 			void moveLeft();
@@ -22,6 +24,7 @@ namespace Enemy
 			~ZapperController();
 
 			void initialize() override;
+			void fireBullet();
 
 		};
 	}

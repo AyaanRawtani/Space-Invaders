@@ -13,9 +13,19 @@ namespace Enemy
     {
     protected:
 
+        float vertical_movement_speed = 30.f;
+        float horizontal_movement_speed = 200.f;
+
+        float rate_of_fire = 2.5f;
+        float elapsed_fire_duration = 0.f;
+
         EnemyView* enemy_view;
         EnemyModel* enemy_model;
         EnemyType* enemy_type;
+
+        void updateFireTimer();
+        void processBulletFire();
+        virtual void fireBullet() = 0;
 
         virtual void move() = 0;
         //void moveLeft();
