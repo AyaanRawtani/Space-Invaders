@@ -1,11 +1,15 @@
 #include "../../Header/UIService/UIService.h"
 #include "../../Header/Main/GameService.h"
+#include "UIService/UIElement/TextView.h"
 
 namespace UI
 {
 	using namespace Main;
 	//using namespace MainMenu;
 	using namespace UIController;
+	using namespace UI::UIElement;
+	
+
 
 	UIService::UIService()
 	{
@@ -25,6 +29,7 @@ namespace UI
 
 	void UIService::initialize()
 	{
+		TextView::initializeTextView();
 		initializeControllers();
 	}
 
