@@ -4,7 +4,7 @@
 namespace UI
 {
 	using namespace Main;
-	using namespace MainMenu;
+	//using namespace MainMenu;
 	using namespace UIController;
 
 	UIService::UIService()

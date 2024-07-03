@@ -1,22 +1,26 @@
 #include "Player/PlayerView.h"
 #include "Global/ServiceLocator.h"
 #include "Player/PlayerController.h"
+#include "UIService/UIElement/ImageView.h"
+#include "Global/Config.h"
 
 namespace Player
 {
 	using namespace Global;
+	using namespace UI::UIElement;
 
-	PlayerView::PlayerView() {};
-	PlayerView::~PlayerView() {};
+	PlayerView::PlayerView() { createUIElements(); }
+	PlayerView::~PlayerView() { destroy(); }
 
 	void PlayerView::initialize(PlayerController* controller)
 	{
 		player_controller = controller;
 		game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
-		initializePlayerSprite();
+		//initializePlayerSprite();
+		initializeImage();
 	}
 
-	void PlayerView::initializePlayerSprite()
+	/*void PlayerView::initializePlayerSprite()
 	{
 		if (player_texture.loadFromFile(player_texture_path))
 		{
@@ -32,14 +36,36 @@ namespace Player
 			static_cast<float>(player_sprite_width) / player_sprite.getTexture()->getSize().x,
 			static_cast<float>(player_sprite_height) / player_sprite.getTexture()->getSize().y);
 
-	}
+	}*/
 
 	void PlayerView::update()
 	{
-		player_sprite.setPosition(player_controller->getPlayerPosition());
+		player_image->setPosition(player_controller->getPlayerPosition());
+		player_image->update();
 	}
 	void PlayerView::render()
 	{
-		game_window->draw(player_sprite);
+		player_image->render();
 	}
+
+	void PlayerView::createUIElements()
+	{
+		player_image = new ImageView();
+	}
+
+	void PlayerView::initializeImage()
+	{
+		player_image->initialize(getPlayerTexturePath(), player_sprite_height, player_sprite_width, player_controller->getPlayerPosition());
+	}
+
+	sf::String PlayerView::getPlayerTexturePath()
+	{
+		return Config::player_texture_path;
+	}
+
+	void PlayerView::destroy()
+	{
+		delete(player_image);
+	}
+
 }
