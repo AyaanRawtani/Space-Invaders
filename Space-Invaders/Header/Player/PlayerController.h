@@ -36,19 +36,19 @@ namespace Player
 		bool processBulletCollision(ICollider* other_collider);
 		bool processPowerupCollision(ICollider* other_collider);
 		bool processEnemyCollision(ICollider* other_collider);
-		void updateFreezDuration();
-		void freezPlayer();
+		void updateFreezeDuration();
+		void freezePlayer();
 
 		void updateFireDuration();
 		void processBulletFire();
-		void FireBullet(bool b_tripple_laser = false);
-		void FireBullet(sf::Vector2f position);
+		void fireBullet(bool b_tripple_laser = false);
+		void fireBullet(sf::Vector2f position);
 
 		void updatePowerupDuration();
 
 		void disableShield();
 		void disableRapidFire();
-		void disableTrippleLaser();
+		void disableTripleLaser();
 
 	public:
 		PlayerController();
@@ -66,6 +66,8 @@ namespace Player
 
 		sf::Vector2f(getPlayerPosition());
 		PlayerState getPlayerState();
+		int getPlayerScore();
+		
 
 		const sf::Sprite& getColliderSprite() override;
 		void onCollision(ICollider* other_collider) override;

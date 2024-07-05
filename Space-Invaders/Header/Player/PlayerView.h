@@ -25,7 +25,7 @@ namespace Player
 		sf::String getPlayerTexturePath();
 		void destroy();
 
-		const sf::Sprite& getPlayerSprite();
+		//const sf::Sprite& getPlayerSprite();
 		//void initializePlayerSprite();
 		//void scalePlayerSprite();
 
@@ -38,6 +38,8 @@ namespace Player
 		void initialize(PlayerController* controller);
 		void update();
 		void render();
+
+		const sf::Sprite& getPlayerSprite();
 
 	};
 }

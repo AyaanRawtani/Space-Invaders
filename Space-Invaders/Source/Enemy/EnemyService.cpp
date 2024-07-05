@@ -43,6 +43,11 @@ namespace Enemy
 		for (int i = 0; i < enemy_list.size(); i++)enemy_list[i]->render();
 	}
 
+	void EnemyService::reset()
+	{
+
+	}
+
 	void EnemyService::updateSpawnTimer()
 	{
 		spawn_timer += ServiceLocator::getInstance()->getTimeService()->getDeltaTime();

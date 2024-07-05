@@ -22,7 +22,7 @@ namespace Bullet
 		void moveDown();
 		void handleOutOfBounds();
 
-		Entity::EntityType getOwnerEntityType();
+		//Entity::EntityType getOwnerEntityType();
 
 	public :
 
@@ -31,6 +31,8 @@ namespace Bullet
 		void initialize(sf::Vector2f position, Bullet::MovementDirection direction) override;
 		void update() override;
 		void render() override;
+
+		Entity::EntityType getOwnerEntityType();
 
 		sf::Vector2f getProjectilePosition() override;
 		BulletType getBulletType();

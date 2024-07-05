@@ -27,7 +27,6 @@ namespace Player
 		bool b_rapid_fire;
 		bool b_triple_laser;
 
-
 	public:
 		const sf::Vector2f left_most_position = sf::Vector2f(50.f, 950.f);
 		const sf::Vector2f right_most_position = sf::Vector2f(1800.f, 950.f);
@@ -72,12 +71,11 @@ namespace Player
 
 		bool isShieldEnabled();
 		bool isRapidFireEnabled();
-		bool isTrippleLaserEnabled();
+		bool isTripleLaserEnabled();
 
 		void setShieldState(bool value);
 		void setRapidFireState(bool value);
-		void setTrippleFireState(bool value);
-
+		void setTripleFireState(bool value);
 
 	};
 }

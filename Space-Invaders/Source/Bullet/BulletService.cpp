@@ -36,18 +36,25 @@ namespace Bullet
 		for (int i = 0; i < bullet_list.size(); i++)bullet_list[i]->render();
 	}
 
+	void BulletService::reset()
+	{
+	}
+
 	BulletController* BulletService::createBullet(BulletType bullet_type, Entity::EntityType owner_type)
 	{
+		BulletController* ptr = nullptr;
+
 		switch (bullet_type)
 		{
 		case::Bullet::BulletType::LASER_BULLET:
-			return new LaserBulletController(Bullet::BulletType::LASER_BULLET);
+			ptr =  new LaserBulletController(Bullet::BulletType::LASER_BULLET, Entity::EntityType::BULLET);
+			return ptr;
 
 		case::Bullet::BulletType::FROST_BULLET:
-			return new FrostBulletController(Bullet::BulletType::FROST_BULLET);
+			return new FrostBulletController(Bullet::BulletType::FROST_BULLET, Entity::EntityType::BULLET);
 
 		case::Bullet::BulletType::TORPEDO:
-			return new TorpedoController(Bullet::BulletType::TORPEDO);
+			return new TorpedoController(Bullet::BulletType::TORPEDO, Entity::EntityType::BULLET);
 		}
 	}
 
