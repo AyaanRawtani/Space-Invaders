@@ -194,6 +194,7 @@
     <ClCompile Include="Source\Projectile\IProjectile.cpp" />
     <ClCompile Include="Source\Sound\SoundService.cpp" />
     <ClCompile Include="Source\Time\TimeService.cpp" />
+    <ClCompile Include="Source\UIService\UIElement\ButtonView.cpp" />
     <ClCompile Include="Source\UIService\UIElement\ImageView.cpp" />
     <ClCompile Include="Source\UIService\MainMenuUIController\MainMenuUIController.cpp" />
     <ClCompile Include="Source\UIService\UIElement\TextView.cpp" />
@@ -247,6 +248,7 @@
     <ClInclude Include="Header\Projectile\IProjectile.h" />
     <ClInclude Include="Header\Sound\SoundService.h" />
     <ClInclude Include="Header\Time\TimeService.h" />
+    <ClInclude Include="Header\UIService\UIElement\ButtonView.h" />
     <ClInclude Include="Header\UIService\UIElement\ImageView.h" />
     <ClInclude Include="Header\UIService\Interface\IUIController.h" />
     <ClInclude Include="Header\UIService\MainMenuUIController\MainMenuUIController.h" />

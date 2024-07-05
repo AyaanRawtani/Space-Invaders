@@ -40,7 +40,7 @@ namespace Global
 
 	const sf::String Config::instructions_button_texture_path = "assets/textures/instructions_button.png";
 
-	const sf::String Config::quit_button_texture_path = "assets/textures/quit_button.png";
+	const sf::String Config::quit_button_texture_path = "assets/textures/quitt_button.png";
 
 	const sf::String Config::menu_button_texture_path = "assets/textures/menu_button.png";
 
