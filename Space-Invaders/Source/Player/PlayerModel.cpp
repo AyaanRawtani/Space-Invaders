@@ -47,4 +47,8 @@ namespace Player
 	{
 		player_state = state;
 	}
+	Entity::EntityType PlayerModel::getEntityType()
+	{
+		return Entity::EntityType();
+	}
 }

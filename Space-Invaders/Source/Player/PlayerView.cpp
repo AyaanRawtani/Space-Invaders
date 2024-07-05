@@ -68,4 +68,10 @@ namespace Player
 		delete(player_image);
 	}
 
+	const sf::Sprite& PlayerView::getPlayerSprite()
+	{
+		return player_sprite;
+		// TODO: insert return statement here
+	}
+
 }
