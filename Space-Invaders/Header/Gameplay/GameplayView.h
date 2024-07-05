@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "UIService/UIElement/ImageView.h"
 
 namespace Gameplay
 {
@@ -12,8 +13,15 @@ namespace Gameplay
 		sf::Texture background_texture;
 		sf::Sprite background_sprite;
 
+		//UI::UIElement::ImageView* gameplay_image;
+
 		void initializeBackgroundSprite();
 		void scaleBackgroundSprite();
+
+		//void initializeImage();
+		//void createUIElements();
+		//sf::String getGameplayTexturePath();
+		//void destroy();
 
 	public:
 		GameplayView();

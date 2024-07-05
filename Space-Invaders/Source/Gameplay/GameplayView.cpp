@@ -1,21 +1,30 @@
 #include "Gameplay/GameplayView.h"
 #include "Global/ServiceLocator.h"
 #include "Graphic/GraphicService.h"
+#include "UIService/UIElement/ImageView.h"
 
 namespace Gameplay
 {
 	using namespace Global;
 	using namespace Graphic;
+	using namespace UI::UIElement;
 
-	GameplayView::GameplayView() { }
+	GameplayView::GameplayView() {  }
 
-	GameplayView::~GameplayView() { }
+	GameplayView::~GameplayView() {  }
 
 	void GameplayView::initialize() 
 	{
 		game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
+		//initializeImage();
 		initializeBackgroundSprite();
 	}
+
+
+	//void GameplayView::createUIElements()
+	//{
+		//gameplay_image = new ImageView();
+	//}
 
 	void GameplayView::initializeBackgroundSprite()
 	{
@@ -35,7 +44,12 @@ namespace Gameplay
 		);
 	}
 
-	void GameplayView::update() { }
+	
+
+	void GameplayView::update() 
+	{
+		
+	}
 
 	void GameplayView::render() 
 	{
