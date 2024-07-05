@@ -323,5 +323,8 @@
     <ClInclude Include="Header\UIService\UIElement\ButtonView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Header\Entity\EntityConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

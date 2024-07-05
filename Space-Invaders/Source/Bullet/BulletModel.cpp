@@ -48,6 +48,11 @@ namespace Bullet
 		movement_direction = direction;
 	}
 
+	Entity::EntityType BulletModel::getOwnerEntityType()
+	{
+		return Entity::EntityType();
+	}
+
 	float BulletModel::getMovementSpeed()
 	{
 		return movement_speed;

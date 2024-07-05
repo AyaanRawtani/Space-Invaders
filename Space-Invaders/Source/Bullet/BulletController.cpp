@@ -8,10 +8,10 @@ namespace Bullet
 {
 	using namespace Global;
 
-	BulletController::BulletController(BulletType type)
+	BulletController::BulletController(BulletType type, Entity::EntityType owner_type)
 	{
 		bullet_view = new BulletView();
-		bullet_model = new BulletModel(type);
+		bullet_model = new BulletModel(type);	
 	}
 
 	BulletController::~BulletController()
@@ -80,6 +80,11 @@ namespace Bullet
 		}
 	}
 
+	Entity::EntityType BulletController::getOwnerEntityType()
+	{
+		return Entity::EntityType();
+	}
+
 	sf::Vector2f BulletController::getProjectilePosition()
 	{
 		return bullet_model->getBulletPosition();
@@ -89,4 +94,6 @@ namespace Bullet
 	{
 		return bullet_model->getBulletType();
 	}
+
+	
 }
