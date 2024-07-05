@@ -1,63 +1,104 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
+#include <stdio.h>
+#include<iostream>
+#include "GameService.h"
+using namespace std;
 
+/*
+class Player {
+private:
+
+    int health = 3 ;
+    sf::Vector2f player_position = sf::Vector2f(200.0f,100.0f);
+    int player_score = 0 ;
+    int movement_speed = 1;
+
+public:
+    sf::Texture player_texture;
+    sf::Sprite player_sprite;
+    
+    
+
+    int getScore()
+    {
+        return player_score;
+    }
+    void setScore(int newScore)
+    {
+        player_score = newScore;
+    }
+    sf::Vector2f getPosition()
+    {
+        return player_position;
+    }
+    
+    int getMoveSpeed()
+    {
+        return movement_speed;
+    }
+    void takeDamage() 
+    {
+    }
+    void move(float offsetX)
+    {
+        player_position.x += offsetX;
+    }
+
+    void shootBullets()
+    {
+    }
+
+   
+};
+*/
 int main()
 {
-    sf::VideoMode videoMode = *(new sf::VideoMode(800, 600));
-    sf::RenderWindow* window = new sf::RenderWindow(videoMode, "MY SFML Window");
+    /*
+    //window
+    sf::VideoMode videoMode = sf::VideoMode(800,600);
+    sf::RenderWindow window(videoMode, "SFML Window");
 
-    while (window->isOpen())
+    //player
+    Player player;
+    player.player_texture.loadFromFile("assets/textures/player_ship.png");
+    player.player_sprite.setTexture(player.player_texture);
+
+    
+    // loop
+    while (window.isOpen())
     {
         sf::Event event;
-        while (window->pollEvent(event))
+        while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
-                window->close();
+                window.close();
         }
 
-        window->clear(sf::Color::Blue);
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+        {
+            player.move(-1.0f* player.getMoveSpeed());
+        }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+        {
+            player.move(1.0f* player.getMoveSpeed());
+        }
 
-        sf::CircleShape circle(50);
-        circle.setFillColor(sf::Color::Green);
-        circle.setPosition(50, 100);
-        window->draw(circle);
+        window.clear(sf::Color::Blue);
 
-        sf::RectangleShape(rectangle);
-        rectangle.setSize(sf::Vector2f(100, 100));
-        rectangle.setFillColor(sf::Color::Red);
-        rectangle.setPosition(300,100);
-        window->draw(rectangle);
+        player.player_sprite.setPosition(player.getPosition());
+        window.draw(player.player_sprite);
 
-        sf::ConvexShape triangle;
-        triangle.setPointCount(3);
-        triangle.setPoint(0, sf::Vector2f(90, 0));
-        triangle.setPoint(1, sf::Vector2f(0, 90));
-        triangle.setPoint(2, sf::Vector2f(90, 180));
-        triangle.setFillColor(sf::Color::Magenta);
-        triangle.setPosition(550,50);
-        window->draw(triangle);
+        window.display();
+    }
+    */
 
-        sf::Texture texture;
-        texture.loadFromFile("assets/textures/outscal_logo.png");
-        sf::Sprite sprite;
-        sprite.setTexture(texture);
-        sprite.setPosition(100,300);
-        sprite.setRotation(45);
-        sprite.setScale(0.5,0.5);
-        window->draw(sprite);
-
-        sf::Font font;
-        font.loadFromFile("assets/fonts/OpenSans.ttf");
-
-        sf::Text text;
-        text.setFont(font);
-        text.setString("I love SFML");
-        text.setCharacterSize(46);
-        text.setFillColor(sf::Color::White);
-        text.setPosition(550,525);
-        text.setRotation(295);
-        window->draw(text);
-     
-        window->display();
+    GameService* game_service = new GameService;
+    game_service->Ignite();
+    while (game_service->isRunning())
+    {
+        game_service->update();
+        game_service->render();
     }
     return 0;
 }
