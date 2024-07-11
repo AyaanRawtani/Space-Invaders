@@ -21,7 +21,6 @@ namespace Player
 		player_view = new PlayerView();
 		player_model = new PlayerModel();
 		
-
 	}
 	PlayerController::~PlayerController()
 	{

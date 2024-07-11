@@ -89,6 +89,11 @@ namespace Powerup
 		//game_window->draw(powerup_sprite);
 	}
 
+	const sf::Sprite& PowerupView::getPowerupSprite()
+	{
+		powerup_image->getSprite();
+	}
+
 	sf::String PowerupView::getPowerupTexturePath()
 	{
 		switch (powerup_controller->getPowerupType())
