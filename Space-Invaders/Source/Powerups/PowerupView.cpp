@@ -91,7 +91,7 @@ namespace Powerup
 
 	const sf::Sprite& PowerupView::getPowerupSprite()
 	{
-		powerup_image->getSprite();
+		return powerup_sprite;
 	}
 
 	sf::String PowerupView::getPowerupTexturePath()

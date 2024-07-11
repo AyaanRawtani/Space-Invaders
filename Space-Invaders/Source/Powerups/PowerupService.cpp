@@ -61,6 +61,9 @@ namespace Powerup
 
 		case::Powerup::PowerupType::OUTSCAL_BOMB:
 			return new OutscalBombController(Powerup::PowerupType::OUTSCAL_BOMB);
+
+		default:
+			return nullptr;
 		}
 	}
 

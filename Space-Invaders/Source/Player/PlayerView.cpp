@@ -15,7 +15,8 @@ namespace Player
 	void PlayerView::initialize(PlayerController* controller)
 	{
 		player_controller = controller;
-		game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
+		
+		//game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
 		//initializePlayerSprite();
 		initializeImage();
 	}
@@ -38,15 +39,6 @@ namespace Player
 
 	}*/
 
-	void PlayerView::update()
-	{
-		player_image->setPosition(player_controller->getPlayerPosition());
-		player_image->update();
-	}
-	void PlayerView::render()
-	{
-		player_image->render();
-	}
 
 	void PlayerView::createUIElements()
 	{
@@ -61,6 +53,16 @@ namespace Player
 	sf::String PlayerView::getPlayerTexturePath()
 	{
 		return Config::player_texture_path;
+	}
+
+	void PlayerView::update()
+	{
+		player_image->setPosition(player_controller->getPlayerPosition());
+		player_image->update();
+	}
+	void PlayerView::render()
+	{
+		player_image->render();
 	}
 
 	void PlayerView::destroy()

@@ -18,6 +18,7 @@ namespace Player
 
 	PlayerController::PlayerController()
 	{
+		printf("player controller constructor called");
 		player_view = new PlayerView();
 		player_model = new PlayerModel();
 		
@@ -30,6 +31,8 @@ namespace Player
 
 	void PlayerController::initialize()
 	{
+		//player_model->setPlayerState(PlayerState::ALIVE);
+
 		switch (player_model->getPlayerState())
 		{
 		case::Player::PlayerState::ALIVE:
@@ -39,6 +42,8 @@ namespace Player
 		case::Player::PlayerState::FROZEN:
 			updateFreezeDuration();
 			break;
+		//default: 
+			
 		}
 
 		updatePowerupDuration();
@@ -60,6 +65,15 @@ namespace Player
 	void PlayerController::reset()
 	{
 		player_model->reset();
+	}
+
+	void PlayerController::decreasePlayerLives()
+	{
+		PlayerModel::player_lives -= 1;
+		if (PlayerModel::player_lives <= 0)
+		{
+			reset();
+		}
 	}
 
 	void PlayerController::onCollision(ICollider* other_collider)
@@ -91,11 +105,6 @@ namespace Player
 	{
 		return player_model->getPlayerScore();
 	}
-
-
-
-
-	
 
 	bool PlayerController::processBulletCollision(ICollider* other_collider)
 	{

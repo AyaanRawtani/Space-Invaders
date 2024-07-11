@@ -60,6 +60,8 @@ namespace Player
 		
 		void reset();
 
+		void decreasePlayerLives();
+		inline void increaseEnemiesKilled(int val) { PlayerModel::enemies_killed += val; }
 		void enableShield();
 		void enableRapidFire();
 		void enableTrippleLaser();

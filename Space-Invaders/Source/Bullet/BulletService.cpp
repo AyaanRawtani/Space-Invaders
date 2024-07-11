@@ -63,6 +63,7 @@ namespace Bullet
 		case::Bullet::BulletType::TORPEDO:
 			return new TorpedoController(Bullet::BulletType::TORPEDO, owner_type);
 		}
+		return ptr;
 	}
 
 	bool BulletService::isValidBullet(int index, std::vector<Projectile::IProjectile*>& bullet_list)
