@@ -89,8 +89,9 @@ namespace Enemy
 	{
 		EnemyController* enemy_controller = createEnemy(getRandomEnemyType());
 		enemy_controller->initialize();
-		enemy_list.push_back(enemy_controller);
 
+		ServiceLocator::getInstance()->getCollisionService()->addCollider(dynamic_cast<ICollider*>(enemy_controller));
+		enemy_list.push_back(enemy_controller);
 		return enemy_controller;
 
 	}

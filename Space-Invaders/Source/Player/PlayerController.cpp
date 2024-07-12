@@ -18,7 +18,7 @@ namespace Player
 
 	PlayerController::PlayerController()
 	{
-		printf("player controller constructor called");
+		//printf("player controller constructor called");
 		player_view = new PlayerView();
 		player_model = new PlayerModel();
 		
@@ -31,8 +31,17 @@ namespace Player
 
 	void PlayerController::initialize()
 	{
-		//player_model->setPlayerState(PlayerState::ALIVE);
+		player_model->initialize();
+		player_view->initialize(this);
 
+			
+	}
+
+		
+	
+
+	void PlayerController::update()
+	{
 		switch (player_model->getPlayerState())
 		{
 		case::Player::PlayerState::ALIVE:
@@ -42,18 +51,10 @@ namespace Player
 		case::Player::PlayerState::FROZEN:
 			updateFreezeDuration();
 			break;
-		//default: 
-			
 		}
 
 		updatePowerupDuration();
 		updateFireDuration();
-		player_view->update();
-	}
-
-	void PlayerController::update()
-	{
-		processPlayerInput();
 		player_view->update();
 	}
 
@@ -120,7 +121,7 @@ namespace Player
 				player_model->setPlayerState(PlayerState::FROZEN);
 				player_model->elapsed_freeze_duration = player_model->freeze_duration;
 			}
-			else ServiceLocator::getInstance()->getGameplayService()->restart();
+			else decreasePlayerLives();
 			return true;
 		}
 
@@ -135,7 +136,7 @@ namespace Player
 		EnemyController* enemy_controller = dynamic_cast<EnemyController*>(other_collider);
 		if (enemy_controller)
 		{
-			ServiceLocator::getInstance()->getGameplayService()->restart();
+			decreasePlayerLives();
 			return true;
 		}
 		return false;

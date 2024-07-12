@@ -1,8 +1,12 @@
 #include "Player/PlayerService.h"
 #include "Player/PlayerController.h"
+#include "Global/ServiceLocator.h"
+#include "Collision/ICollider.h"
 
 namespace Player
 {
+	using namespace Global;
+	using namespace Collision;
 
 	PlayerService::PlayerService()
 	{
@@ -18,6 +22,7 @@ namespace Player
 	void PlayerService::initialize()
 	{
 		player_controller->initialize();
+		ServiceLocator::getInstance()->getCollisionService()->addCollider(dynamic_cast<ICollider*>(player_controller));
 	}
 
 
