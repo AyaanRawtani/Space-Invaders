@@ -4,8 +4,6 @@
 namespace Player
 {
 
-
-
 	PlayerService::PlayerService()
 	{
 		player_controller = new PlayerController();
@@ -31,6 +29,31 @@ namespace Player
 	void PlayerService::render()
 	{
 		player_controller->render();
+	}
+
+	void PlayerService::enableShield()
+	{
+		player_controller->enableShield();
+	}
+
+	void PlayerService::enableRapidFire()
+	{
+		player_controller->enableRapidFire();
+	}
+
+	void PlayerService::enableTripleLaser()
+	{
+		player_controller->enableTrippleLaser();
+	}
+
+	void PlayerService::reset()
+	{
+		player_controller->reset();
+	}
+
+	void PlayerService::increaseEnemiesKilled(int val)
+	{
+		player_controller->increaseEnemiesKilled(val);
 	}
 
 }

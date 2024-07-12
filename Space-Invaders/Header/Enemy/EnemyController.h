@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "Collision/ICollider.h"
 
 namespace Enemy
 {
@@ -9,7 +10,7 @@ namespace Enemy
     enum class EnemyType;
     enum class EnemyState;
 
-    class EnemyController
+    class EnemyController : public Collision::ICollider
     {
     protected:
 
@@ -34,6 +35,7 @@ namespace Enemy
 
         sf::Vector2f getRandomInitialPosition();
         void handleOutOfBounds();
+        virtual void destroy();
 
     public:
         EnemyController(EnemyType type);
@@ -48,5 +50,8 @@ namespace Enemy
         //void setEnemyType(EnemyType type);
         //void getEnemyType();
         sf::Vector2f getEnemyPosition();
+
+        const sf::Sprite& getColliderSprite() override;
+        virtual void onCollision(ICollider* other_collider) override;
     };
 }

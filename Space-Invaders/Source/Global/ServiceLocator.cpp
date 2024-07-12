@@ -177,6 +177,11 @@ namespace Global
 		return powerup_service;
 	}
 
+	Collision::CollisionService* ServiceLocator::getCollisionService()
+	{
+		return collision_service;
+	}
+
 	void ServiceLocator::deleteServiceLocator()
 	{
 		delete(this);

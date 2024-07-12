@@ -11,6 +11,7 @@ namespace Player
 		const sf::String player_texture_path = "assets/textures/player_ship.png";
 		const float player_sprite_width = 60.f;
 		const float player_sprite_height = 60.f;
+		
 
 		UI::UIElement::ImageView* player_image;
 
@@ -24,6 +25,7 @@ namespace Player
 		sf::String getPlayerTexturePath();
 		void destroy();
 
+		//const sf::Sprite& getPlayerSprite();
 		//void initializePlayerSprite();
 		//void scalePlayerSprite();
 
@@ -36,6 +38,8 @@ namespace Player
 		void initialize(PlayerController* controller);
 		void update();
 		void render();
+
+		const sf::Sprite& getPlayerSprite();
 
 	};
 }
