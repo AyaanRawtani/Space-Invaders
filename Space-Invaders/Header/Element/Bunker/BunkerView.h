@@ -37,6 +37,8 @@ namespace Element
 			void update();
 			void render();
 
+			const sf::Sprite& getBunkerSprite();
+
 
 		};
 	}

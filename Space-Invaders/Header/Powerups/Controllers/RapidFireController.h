@@ -10,6 +10,7 @@ namespace Powerup
 		public :
 			RapidFireController(PowerupType type);
 			virtual ~RapidFireController();
+			void applyPowerup();
 
 			void onCollected() override;
 		};

@@ -1,5 +1,6 @@
 #pragma once
 #include "Powerups/PowerupController.h"
+#include "Global/ServiceLocator.h"
 
 namespace Powerup
 {
@@ -10,6 +11,7 @@ namespace Powerup
 		public :
 			TripleLaserController(PowerupType type);
 			virtual ~TripleLaserController();
+			void applyPowerup();
 
 			void onCollected() override;
 		};
