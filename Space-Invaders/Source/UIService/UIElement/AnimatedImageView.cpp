@@ -99,6 +99,7 @@ namespace UI
             animation_type = AnimationType::FADE_IN;
             clock.restart();
             elapsed_duration = 0.0f;
+            
         }
 	}
 }

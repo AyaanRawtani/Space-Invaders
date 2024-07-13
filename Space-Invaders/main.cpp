@@ -10,7 +10,7 @@ using namespace Main;
 int main()
 {
     GameService* game_service = new GameService;
-    game_service->Ignite();
+    game_service->ignite();
     while (game_service->isRunning())
     {
         game_service->update();

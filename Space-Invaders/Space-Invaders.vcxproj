@@ -208,6 +208,8 @@
     <ClCompile Include="Source\UIService\UIElement\UIView.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Header\AnimationSystem\AnimationSystemConfig.h" />
+    <ClInclude Include="Header\AnimationSystem\AnimationSystemConfigData.h" />
     <ClInclude Include="Header\Bullet\BulletConfig.h" />
     <ClInclude Include="Header\Bullet\BulletController.h" />
     <ClInclude Include="Header\Bullet\BulletModel.h" />

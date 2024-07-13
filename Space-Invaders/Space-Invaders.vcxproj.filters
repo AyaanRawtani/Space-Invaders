@@ -659,6 +659,12 @@
     <ClInclude Include="Header\UIService\UIElement\AnimatedImageView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Header\AnimationSystem\AnimationSystemConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header\AnimationSystem\AnimationSystemConfigData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="sfml\include\SFML\Audio\SoundFileFactory.inl">
