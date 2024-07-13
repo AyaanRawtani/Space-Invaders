@@ -16,7 +16,7 @@ namespace Main
 	GameService::GameService()
 	{
 		service_locator = nullptr;
-		
+
 	}
 
 	GameService::~GameService()
