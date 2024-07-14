@@ -47,7 +47,7 @@ namespace Player
 		const float rapid_fire_powerup_duration = 10.f;
 		const float triple_laser_powerup_duration = 10.f;
 
-		const float freeze_duration = 2.f;
+		const float freeze_duration = 0.5f;
 
 		const float fire_cooldown_duration = 0.2f;
 		const float rapid_fire_cooldown_duration = 0.05f;
@@ -69,9 +69,6 @@ namespace Player
 
 		sf::Vector2f getPlayerPosition();
 		void setPlayerPosition(sf::Vector2f position);
-
-		int getPlayerScore();
-		void setPlayerScore(int score);
 
 		PlayerState getPlayerState();
 		void setPlayerState(PlayerState state);

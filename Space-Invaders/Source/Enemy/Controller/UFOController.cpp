@@ -13,22 +13,22 @@ namespace Enemy
     using namespace Collision;
     using namespace Entity;
 
-	namespace Controller
-	{
-		UFOController::UFOController(EnemyType type) : EnemyController(type)
-		{
+    namespace Controller
+    {
+        UFOController::UFOController(EnemyType type) : EnemyController(type)
+        {
 
-		}
+        }
 
-		UFOController::~UFOController()
-		{
+        UFOController::~UFOController()
+        {
 
-		}
+        }
 
-		void UFOController::initialize()
-		{
-			EnemyController::initialize();	
-		}
+        void UFOController::initialize()
+        {
+            EnemyController::initialize();
+        }
 
         void UFOController::onCollision(ICollider* other_collider)
         {
@@ -100,10 +100,8 @@ namespace Enemy
             }
         }
 
-        void UFOController::fireBullet()
-        {
+        void UFOController::fireBullet() {}
 
-        }
 
         Powerup::PowerupType UFOController::getRandomPowerupType()
         {
@@ -112,5 +110,14 @@ namespace Enemy
             int random_value = std::rand() % (static_cast<int>(Powerup::PowerupType::OUTSCAL_BOMB) + 1);
             return static_cast<Powerup::PowerupType>(random_value);
         }
-	}
+
+
+
+
+        void UFOController::destroy()
+        {
+
+            EnemyController::destroy();
+        }
+    }
 }

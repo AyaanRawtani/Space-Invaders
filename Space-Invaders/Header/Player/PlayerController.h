@@ -64,11 +64,11 @@ namespace Player
 		inline void increaseEnemiesKilled(int val) { PlayerModel::enemies_killed += val; }
 		void enableShield();
 		void enableRapidFire();
-		void enableTrippleLaser();
+		void enableTripleLaser();
 
-		sf::Vector2f(getPlayerPosition());
+		sf::Vector2f getPlayerPosition();
 		PlayerState getPlayerState();
-		int getPlayerScore();
+		
 		
 
 		const sf::Sprite& getColliderSprite() override;

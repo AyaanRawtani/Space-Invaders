@@ -9,6 +9,7 @@ namespace Enemy
 	EnemyModel::EnemyModel(EnemyType type) 
 	{
 		enemy_type = type;
+		entity_type = Entity::EntityType::ENEMY;
 	}
 	EnemyModel::~EnemyModel() {}
 
@@ -68,5 +69,10 @@ namespace Enemy
 	void EnemyModel::setMovementDirection(MovementDirection direction)
 	{
 		movement_direction = direction; 
+	}
+
+	Entity::EntityType EnemyModel::getEntityType()
+	{
+		return entity_type;
 	}
 }

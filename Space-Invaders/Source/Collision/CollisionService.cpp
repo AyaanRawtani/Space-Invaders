@@ -12,7 +12,7 @@ namespace Collision
 
 	void CollisionService::initialize()
 	{
-
+		
 	}
 
 	void CollisionService::update()

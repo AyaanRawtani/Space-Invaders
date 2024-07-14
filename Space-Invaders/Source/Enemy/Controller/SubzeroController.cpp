@@ -2,10 +2,14 @@
 #include "Enemy/EnemyModel.h"
 #include "Enemy/EnemyConfig.h"
 #include "Global/ServiceLocator.h"
+#include "Bullet/BulletConfig.h"
+#include "Enemy/EnemyView.h"
 
 namespace Enemy
 {
 	using namespace Global;
+	using namespace Time;
+	using namespace Bullet;
 	
 
 	namespace Controller
@@ -46,8 +50,13 @@ namespace Enemy
 
 		void SubzeroController::fireBullet()
 		{
-			ServiceLocator::getInstance()->getBulletService()->spawnBullet(Bullet::BulletType::FROST_BULLET, Entity::EntityType::BULLET, enemy_model->getEnemyPosition() + enemy_model->barrel_position_offset,
+			ServiceLocator::getInstance()->getBulletService()->spawnBullet(Bullet::BulletType::FROST_BULLET,enemy_model->getEntityType(), enemy_model->getEnemyPosition() + enemy_model->barrel_position_offset,
 				Bullet::MovementDirection::DOWN);
+		}
+
+		void SubzeroController::destroy()
+		{
+			EnemyController::destroy();
 		}
 	}
 }

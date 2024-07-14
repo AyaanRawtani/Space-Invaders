@@ -15,6 +15,7 @@ namespace Player
 
 	PlayerService::~PlayerService()
 	{
+		ServiceLocator::getInstance()->getCollisionService()->removeCollider(dynamic_cast<ICollider*>(player_controller));
 		delete(player_controller);
 	}
 
@@ -48,7 +49,7 @@ namespace Player
 
 	void PlayerService::enableTripleLaser()
 	{
-		player_controller->enableTrippleLaser();
+		player_controller->enableTripleLaser();
 	}
 
 	void PlayerService::reset()

@@ -1,5 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "Entity/EntityConfig.h"
 
 namespace Enemy
 {
@@ -17,6 +18,7 @@ namespace Enemy
 		MovementDirection movement_direction;
 		EnemyType enemy_type;
 		EnemyState enemy_state;
+		Entity::EntityType entity_type;
 
 	public:
 		const sf::Vector2f left_most_position = sf::Vector2f(50.0f, 50.0f);
@@ -51,6 +53,8 @@ namespace Enemy
 
 		MovementDirection getMovementDirection();
 		void setMovementDirection(MovementDirection direction);
+
+		Entity::EntityType getEntityType();
 
 	};
 }

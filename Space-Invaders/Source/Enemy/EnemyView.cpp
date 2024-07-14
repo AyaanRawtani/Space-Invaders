@@ -19,7 +19,7 @@ namespace Enemy
 	void EnemyView::initialize(EnemyController* controller)
 	{
 		enemy_controller = controller;
-		game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
+		
 		initializeImage();
 		
 	}

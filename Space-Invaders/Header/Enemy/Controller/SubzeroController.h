@@ -14,7 +14,7 @@ namespace Enemy
 
 			void move() override;
 			void moveDown();
-
+			void destroy() override;
 		public:
 			//SubzeroController();
 			SubzeroController(EnemyType type);
@@ -22,6 +22,8 @@ namespace Enemy
 
 			void initialize() override;
 			void fireBullet();
+
+			
 
 		};
 	}

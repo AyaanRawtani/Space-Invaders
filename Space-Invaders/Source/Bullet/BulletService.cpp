@@ -42,20 +42,16 @@ namespace Bullet
 		for (int i = 0; i < bullet_list.size(); i++)bullet_list[i]->render();
 	}
 
-	void BulletService::reset()
-	{
-		destroy();
-	}
+	
 
 	BulletController* BulletService::createBullet(BulletType bullet_type, Entity::EntityType owner_type)
 	{
-		BulletController* ptr = nullptr;
-
+		
 		switch (bullet_type)
 		{
 		case::Bullet::BulletType::LASER_BULLET:
-			ptr =  new LaserBulletController(Bullet::BulletType::LASER_BULLET, owner_type);
-			return ptr;
+			return new LaserBulletController(Bullet::BulletType::LASER_BULLET, owner_type);
+			
 
 		case::Bullet::BulletType::FROST_BULLET:
 			return new FrostBulletController(Bullet::BulletType::FROST_BULLET, owner_type);
@@ -63,7 +59,7 @@ namespace Bullet
 		case::Bullet::BulletType::TORPEDO:
 			return new TorpedoController(Bullet::BulletType::TORPEDO, owner_type);
 		}
-		return ptr;
+		
 	}
 
 	bool BulletService::isValidBullet(int index, std::vector<Projectile::IProjectile*>& bullet_list)
@@ -113,5 +109,10 @@ namespace Bullet
 			flagged_bullet_list.push_back(bullet_controller);
 			bullet_list.erase(std::remove(bullet_list.begin(), bullet_list.end(), bullet_controller), bullet_list.end());
 		}
+	}
+
+	void BulletService::reset()
+	{
+		destroy();
 	}
 }

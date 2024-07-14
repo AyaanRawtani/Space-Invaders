@@ -2,10 +2,15 @@
 #include "Enemy/EnemyConfig.h"
 #include "Enemy/EnemyModel.h"
 #include "Global/ServiceLocator.h"
+#include "Bullet/BulletConfig.h"
+#include "Enemy/EnemyView.h"
+
 
 namespace Enemy
 {
 	using namespace Global;
+    using namespace Time;
+    using namespace Bullet;
 
 	namespace Controller
 	{
@@ -116,8 +121,15 @@ namespace Enemy
 
         void ZapperController::fireBullet()
         {
-            ServiceLocator::getInstance()->getBulletService()->spawnBullet(Bullet::BulletType::LASER_BULLET, Entity::EntityType::BULLET, enemy_model->getEnemyPosition() + enemy_model->barrel_position_offset,
+            ServiceLocator::getInstance()->getBulletService()->spawnBullet(Bullet::BulletType::LASER_BULLET, enemy_model->getEntityType(),
+                enemy_model->getEnemyPosition() + enemy_model->barrel_position_offset,
                 Bullet::MovementDirection::DOWN);
+        }
+
+        void ZapperController::destroy()
+        {
+
+            EnemyController::destroy();
         }
 
 	}

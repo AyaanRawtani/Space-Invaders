@@ -6,6 +6,10 @@
 #include "Bullet/BulletController.h"
 #include "Enemy/EnemyController.h"
 #include "Powerups/PowerupController.h"
+#include "Main/GameService.h"
+#include "Bullet/BulletConfig.h"
+#include "Entity/EntityConfig.h"
+#include "Bullet/BulletController.h"
 #include <algorithm>
 
 namespace Player
@@ -15,10 +19,15 @@ namespace Player
 	using namespace Bullet;
 	using namespace Enemy;
 	using namespace Powerup;
+	using namespace Main;
+	using namespace Entity;
+	using namespace Gameplay;
+
+
 
 	PlayerController::PlayerController()
 	{
-		//printf("player controller constructor called");
+		
 		player_view = new PlayerView();
 		player_model = new PlayerModel();
 		
@@ -68,25 +77,6 @@ namespace Player
 		player_model->reset();
 	}
 
-	void PlayerController::decreasePlayerLives()
-	{
-		PlayerModel::player_lives -= 1;
-		if (PlayerModel::player_lives <= 0)
-		{
-			reset();
-		}
-	}
-
-	void PlayerController::onCollision(ICollider* other_collider)
-	{
-		if (processPowerupCollision(other_collider))
-			return;
-		if (processBulletCollision(other_collider))
-			return;
-
-		processEnemyCollision(other_collider);
-	}
-
 	const sf::Sprite& PlayerController::getColliderSprite()
 	{
 		return player_view->getPlayerSprite();
@@ -102,10 +92,28 @@ namespace Player
 		return player_model->getPlayerState();
 	}
 
-	int PlayerController::getPlayerScore()
+	void PlayerController::decreasePlayerLives()
 	{
-		return player_model->getPlayerScore();
+		PlayerModel::player_lives -= 1;
+		if (PlayerModel::player_lives <= 0)
+		{
+			reset();
+		}
 	}
+
+	void PlayerController::onCollision(ICollider* other_collider)
+	{
+		if (processPowerupCollision(other_collider))
+			return;
+
+		if (processBulletCollision(other_collider))
+			return;
+
+		processEnemyCollision(other_collider);
+	}
+
+	
+
 
 	bool PlayerController::processBulletCollision(ICollider* other_collider)
 	{
@@ -114,14 +122,11 @@ namespace Player
 
 		BulletController* bullet_controller = dynamic_cast<BulletController*>(other_collider);
 
-		if (bullet_controller && bullet_controller->getOwnerEntityType() != Entity::EntityType::PLAYER)
+		if (bullet_controller && bullet_controller->getOwnerEntityType() != EntityType::PLAYER)
 		{
-			if (bullet_controller->getBulletType() == BulletType::FROST_BULLET)
-			{
-				player_model->setPlayerState(PlayerState::FROZEN);
-				player_model->elapsed_freeze_duration = player_model->freeze_duration;
-			}
+			if (bullet_controller->getBulletType() == BulletType::FROST_BULLET) freezePlayer();
 			else decreasePlayerLives();
+
 			return true;
 		}
 
@@ -134,6 +139,7 @@ namespace Player
 			return false;
 
 		EnemyController* enemy_controller = dynamic_cast<EnemyController*>(other_collider);
+
 		if (enemy_controller)
 		{
 			decreasePlayerLives();
@@ -145,6 +151,7 @@ namespace Player
 	bool PlayerController::processPowerupCollision(ICollider* other_collider)
 	{
 		PowerupController* powerup_controller = dynamic_cast<PowerupController*>(other_collider);
+
 		if (powerup_controller)
 		{
 			return true;
@@ -201,7 +208,7 @@ namespace Player
 		player_model->setRapidFireState(false);
 	}
 
-	void PlayerController::enableTrippleLaser()
+	void PlayerController::enableTripleLaser()
 	{
 		player_model->elapsed_triple_laser_duration = player_model->triple_laser_powerup_duration;
 		player_model->setTripleFireState(true);
@@ -259,13 +266,23 @@ namespace Player
 
 	void PlayerController::updateFreezeDuration()
 	{
-		if (player_model->elapsed_freeze_duration > 0)
+		if (elapsed_freeze_duration > 0)
 		{
-			player_model->elapsed_fire_duration -= ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+			elapsed_fire_duration -= ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
 
-			if (player_model->elapsed_freeze_duration <= 0)
+			if (elapsed_freeze_duration <= 0)
+			{
 				player_model->setPlayerState(PlayerState::ALIVE);
+			}
+
 		}
+	}
+
+	void PlayerController::freezePlayer()
+	{
+		player_model->setPlayerState(PlayerState::FROZEN);
+		elapsed_freeze_duration = player_model->freeze_duration;
+		
 	}
 
 	void PlayerController::processBulletFire()
@@ -278,9 +295,9 @@ namespace Player
 		else fireBullet();
 
 		if (player_model->isRapidFireEnabled())
-			player_model->elapsed_fire_duration = player_model->rapid_fire_cooldown_duration;
+			elapsed_fire_duration = player_model->rapid_fire_cooldown_duration;
 
-		else player_model->elapsed_fire_duration = player_model->fire_cooldown_duration;
+		else elapsed_fire_duration = player_model->fire_cooldown_duration;
 	}
 
 	void PlayerController::fireBullet(bool b_triple_laser)

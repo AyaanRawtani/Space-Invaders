@@ -8,7 +8,8 @@ namespace Player
 	PlayerModel::PlayerModel() 
 	{
 		entity_type = Entity::EntityType::PLAYER;
-	};
+	}
+
 	PlayerModel::~PlayerModel() {};
 
 	void PlayerModel::initialize()
@@ -20,7 +21,7 @@ namespace Player
 	{
 		player_state = PlayerState::ALIVE;
 		player_position = initial_player_position;
-		player_score = 0;
+		//player_score = 0;
 
 		player_lives = max_player_lives;
 		enemies_killed = 0;
@@ -40,14 +41,6 @@ namespace Player
 		player_position = position;
 	}
 
-	int PlayerModel::getPlayerScore()
-	{
-		return player_score;
-	}
-	void PlayerModel::setPlayerScore(int score)
-	{
-		player_score = score;
-	}
 
 	PlayerState PlayerModel::getPlayerState()
 	{
@@ -61,7 +54,7 @@ namespace Player
 
 	Entity::EntityType PlayerModel::getEntityType()
 	{
-		return Entity::EntityType();
+		return entity_type;
 	}
 
 	bool PlayerModel::isShieldEnabled()

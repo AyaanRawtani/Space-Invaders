@@ -16,6 +16,8 @@ namespace Enemy
 			void fireBullet() override;
 			Powerup::PowerupType getRandomPowerupType();
 
+			void destroy() override;
+
 		public :
 			UFOController(EnemyType type);
 			~UFOController();
