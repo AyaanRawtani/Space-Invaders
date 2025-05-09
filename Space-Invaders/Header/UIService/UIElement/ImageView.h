@@ -21,6 +21,8 @@ namespace UI
 			virtual void render() override;
 
 			virtual void setTexture(sf::String texture_path);
+			virtual void setTextureRect(sf::IntRect texture_rect);
+			virtual void setScale(float width, float height, float tile_width, float tile_height);
 			virtual void setScale(float width, float height);
 			virtual void setPosition(sf::Vector2f position);
 			virtual void setRotation(float rotation_angle);
@@ -28,6 +30,7 @@ namespace UI
 			virtual void setImageAlpha(float alpha);
 			virtual void setCentreAlinged();
 
+			virtual sf::Sprite& getSprite();
 		};
 	}
 }

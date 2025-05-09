@@ -3,12 +3,22 @@
 #include "Enemy/EnemyView.h"
 #include "Global/ServiceLocator.h"
 #include "Enemy/EnemyConfig.h"
+#include "Player/PlayerController.h"
+#include "Sound/SoundService.h"
+#include "Entity/EntityConfig.h"
+#include "Bullet/BulletController.h"
+#include "Bullet/BulletConfig.h"
+#include "Sound/SoundService.h"
 
 namespace Enemy
 {
 	using namespace Global;
 	using namespace Time;
 	using namespace Bullet;
+	using namespace Collision;
+	using namespace Player;
+	using namespace Entity;
+	using namespace Sound;
 
 	EnemyController::EnemyController(EnemyType type)
 	{
@@ -34,8 +44,8 @@ namespace Enemy
 		move();
 		updateFireTimer();
 		processBulletFire();
-		enemy_view->update();
 		handleOutOfBounds();
+		enemy_view->update();
 	}
 
 
@@ -83,9 +93,12 @@ namespace Enemy
 	EnemyState EnemyController::getEnemyState()
 	{
 		return enemy_model->getEnemyState();
-
 	}
 	
+	const sf::Sprite& EnemyController::getColliderSprite()
+	{
+		return enemy_view->getEnemySprite();
+	}
 
 	sf::Vector2f EnemyController::getRandomInitialPosition()
 	{
@@ -96,71 +109,35 @@ namespace Enemy
 		return sf::Vector2f(x_position, y_position);
 	}
 
-	/*void EnemyController::getEnemyType()
-	{
-		
-	}
+	
 
-	void EnemyController::move()
+	void EnemyController::onCollision(ICollider* other_collider)
 	{
-		switch (enemy_model->getMovementDirection())
+		BulletController* bullet_controller = dynamic_cast<BulletController*>(other_collider);
+		if (bullet_controller && bullet_controller->getOwnerEntityType() != EntityType::ENEMY)
 		{
-		case::Enemy::MovementDirection::LEFT:
-			moveLeft();
-			break;
+			destroy();
+			return;
+		}
 
-		case::Enemy::MovementDirection::RIGHT:
-			moveRight();
-			break;
-
-		case::Enemy::MovementDirection::DOWN:
-			moveDown();
-			break;
+		PlayerController* player_controller = dynamic_cast<PlayerController*>(other_collider);
+		if (player_controller)
+		{
+			destroy();
+			return;
 		}
 	}
 
-	void EnemyController::moveRight()
+	void EnemyController::destroy()
 	{
-		sf::Vector2f currentPosition = enemy_model->getEnemyPosition();
-		currentPosition.x += enemy_model->enemy_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+		ServiceLocator::getInstance()->getAnimationService()->spawnAnimationSystem(enemy_model->getEnemyPosition(),
+			Animation::AnimationType::EXPLOSION);
 
-		if (currentPosition.x >= enemy_model->right_most_position.x)
-		{
-			enemy_model->setMovementDirection(MovementDirection::DOWN);
-			enemy_model->setReferencePosition(currentPosition);
-		}
+		ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::EXPLOSION);
 
-		else enemy_model->setEnemyPosition(currentPosition);
+		ServiceLocator::getInstance()->getPlayerService()->increaseEnemiesKilled(1);
+		ServiceLocator::getInstance()->getEnemyService()->destroyEnemy(this);
 	}
-
-	void EnemyController::moveLeft()
-	{
-		sf::Vector2f currentPosition = enemy_model->getEnemyPosition();
-		currentPosition.x -= enemy_model->enemy_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
-
-		if (currentPosition.x <= enemy_model->left_most_position.x)
-		{
-			enemy_model->setMovementDirection(MovementDirection::DOWN);
-			enemy_model->setReferencePosition(currentPosition);
-		}
-
-		else enemy_model->setEnemyPosition(currentPosition);
-	}
-
-	void EnemyController::moveDown()
-	{
-		sf::Vector2f currentPosition = enemy_model->getEnemyPosition();
-		currentPosition.y += enemy_model->enemy_movement_speed * ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
-
-
-		if (currentPosition.y >= enemy_model->getReferencePosition().y + enemy_model->vertical_travel_distance)
-		{
-			if (enemy_model->getReferencePosition().x <= enemy_model->left_most_position.x) enemy_model->setMovementDirection(MovementDirection::RIGHT);
-			else enemy_model->setMovementDirection(MovementDirection::LEFT);
-		}
-		else enemy_model->setEnemyPosition(currentPosition);
-	}
-	*/
 
 }
 

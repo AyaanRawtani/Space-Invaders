@@ -7,14 +7,17 @@ namespace Main
 	enum class GameState
 	{
 		BOOT,
+		SPLASH_SCREEN,
 		MAIN_MENU,
-		GAMEPLAY
+		GAMEPLAY,
+		
 	};
 
 	class GameService
 	{
 	private:
 		static GameState current_state;
+
 		Global::ServiceLocator* service_locator;
 		sf::RenderWindow* game_window;
 
@@ -22,14 +25,17 @@ namespace Main
 		void initializeVariables();
 		void destroy();
 		void showMainMenu();
+		void showSplashScreen();
 
 	public:
 		GameService();
-		~GameService();
-		void Ignite();
+		virtual ~GameService();
+
+		void ignite();
 		void update();
 		void render();
 		bool isRunning();
+
 		static void setGameState(GameState new_state);
 		static GameState getGameState();
 

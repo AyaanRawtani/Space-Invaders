@@ -4,19 +4,25 @@
 
 namespace Gameplay
 {
+	class GameplayController;
+
 	class GameplayView
 	{
 	private:
-		const sf::String background_texture_path = "assets/textures/space_invaders_bg.png";
+		
 
 		sf::RenderWindow* game_window;
 		sf::Texture background_texture;
 		sf::Sprite background_sprite;
 
-		//UI::UIElement::ImageView* gameplay_image;
+		const float background_alpha = 250.f;
 
-		void initializeBackgroundSprite();
-		void scaleBackgroundSprite();
+		GameplayController* gameplay_controller;
+		UI::UIElement::ImageView* background_image;
+		
+
+		void initializeBackgroundImage();
+		
 
 		//void initializeImage();
 		//void createUIElements();

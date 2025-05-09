@@ -7,13 +7,15 @@ namespace Main
 {
 
 	using namespace Global;
+	using namespace Graphic;
+	using namespace Event;
+	using namespace UI;
 	
 	GameState GameService::current_state = GameState::BOOT;
 
 	GameService::GameService()
 	{
 		service_locator = nullptr;
-		game_window = nullptr;
 
 	}
 
@@ -26,24 +28,28 @@ namespace Main
 	{
 		service_locator->initialize();
 		initializeVariables();
-		showMainMenu();
+		showSplashScreen();
 	}
+
 	void GameService::initializeVariables()
 	{
 		game_window = service_locator->getGraphicService()->getGameWindow();
 
 	}
 
-	void GameService::destroy()
-	{
 
-	}
-
-	void GameService::Ignite()
+	void GameService::ignite()
 	{
 		service_locator = ServiceLocator::getInstance();
 		initialize();
 	}
+
+	void GameService::showSplashScreen()
+	{
+		setGameState(GameState::SPLASH_SCREEN);
+		ServiceLocator::getInstance()->getUIService()->showScreen();
+	}
+
 	void GameService::update()
 	{
 		service_locator->getEventService()->processEvents();
@@ -76,5 +82,10 @@ namespace Main
 	void GameService::showMainMenu()
 	{
 		setGameState(GameState::MAIN_MENU);
+	}
+
+	void GameService::destroy()
+	{
+		service_locator->deleteServiceLocator();
 	}
 }
