@@ -1,5 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "Entity/EntityConfig.h"
+
 
 namespace Bullet
 {
@@ -14,10 +16,11 @@ namespace Bullet
 
 		BulletType bullet_type;
 		MovementDirection movement_direction;
+		Entity::EntityType owner_type;
 
 	public:
 
-		BulletModel(BulletType type);
+		BulletModel(BulletType type, Entity::EntityType owner_type);
 		~BulletModel();
 
 		void initialize(sf::Vector2f position, MovementDirection direction);
@@ -30,6 +33,8 @@ namespace Bullet
 
 		MovementDirection getMovementDirection();
 		void setMovementDirection(MovementDirection direction);
+
+		Entity::EntityType getOwnerEntityType();
 
 		float getMovementSpeed();
 		void setMovementSpeed(float speed);

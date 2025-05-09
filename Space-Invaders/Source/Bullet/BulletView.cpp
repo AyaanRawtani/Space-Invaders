@@ -74,4 +74,9 @@ namespace Bullet
 		game_window->draw(bullet_sprite);
 	}
 
+	const sf::Sprite& BulletView::getBulletSprite()
+	{
+		return bullet_sprite;
+	}
+
 }

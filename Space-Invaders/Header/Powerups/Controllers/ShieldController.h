@@ -10,6 +10,7 @@ namespace Powerup
 		public :
 			ShieldController(PowerupType type);
 			virtual ~ShieldController();
+			void applyPowerup();
 
 			void onCollected() override;
 		};

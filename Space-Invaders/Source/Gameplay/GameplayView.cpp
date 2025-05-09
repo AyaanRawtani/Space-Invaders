@@ -2,6 +2,7 @@
 #include "Global/ServiceLocator.h"
 #include "Graphic/GraphicService.h"
 #include "UIService/UIElement/ImageView.h"
+#include "Global/Config.h"
 
 namespace Gameplay
 {
@@ -9,50 +10,22 @@ namespace Gameplay
 	using namespace Graphic;
 	using namespace UI::UIElement;
 
-	GameplayView::GameplayView() {  }
+	GameplayView::GameplayView() { background_image = new ImageView(); }
 
-	GameplayView::~GameplayView() {  }
+	GameplayView::~GameplayView() { delete (background_image); }
 
-	void GameplayView::initialize() 
+	void GameplayView::initialize() { initializeBackgroundImage(); }
+
+	void GameplayView::initializeBackgroundImage()
 	{
-		game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
-		//initializeImage();
-		initializeBackgroundSprite();
+		sf::RenderWindow* game_window = ServiceLocator::getInstance()->getGraphicService()->getGameWindow();
+
+		background_image->initialize(Config::background_texture_path,game_window->getSize().x,game_window->getSize().y,sf::Vector2f(0, 0));
+
+		background_image->setImageAlpha(background_alpha);
 	}
 
+	void GameplayView::update() { background_image->update(); }
 
-	//void GameplayView::createUIElements()
-	//{
-		//gameplay_image = new ImageView();
-	//}
-
-	void GameplayView::initializeBackgroundSprite()
-	{
-		if (background_texture.loadFromFile(background_texture_path))
-		{
-			background_sprite.setTexture(background_texture);
-			scaleBackgroundSprite();
-		}
-	}
-
-	void GameplayView::scaleBackgroundSprite()
-	{
-		background_sprite.setScale
-		(
-			static_cast<float>(game_window->getSize().x) / background_sprite.getTexture()->getSize().x,
-			static_cast<float>(game_window->getSize().y) / background_sprite.getTexture()->getSize().y
-		);
-	}
-
-	
-
-	void GameplayView::update() 
-	{
-		
-	}
-
-	void GameplayView::render() 
-	{
-		game_window->draw(background_sprite);
-	}
+	void GameplayView::render() { background_image->render(); }
 }

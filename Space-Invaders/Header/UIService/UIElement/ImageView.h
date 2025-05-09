@@ -28,6 +28,7 @@ namespace UI
 			virtual void setImageAlpha(float alpha);
 			virtual void setCentreAlinged();
 
+			virtual sf::Sprite& getSprite();
 		};
 	}
 }

@@ -1,6 +1,7 @@
 #pragma once 
 #include <SFML/Graphics.hpp>
 
+
 namespace Bullet
 {
 	class BulletController;
@@ -28,6 +29,8 @@ namespace Bullet
 		void initialize(BulletController* controller);
 		void update();
 		void render();
+
+		const sf::Sprite& getBulletSprite();
 		
 	};
 }
